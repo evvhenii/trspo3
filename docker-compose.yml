@@ -1,0 +1,78 @@
+version: "3.3"
+
+services:
+
+  db-cashier:
+    image: postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_DB=cashier
+    ports:
+      - "5440:5432"
+      
+  db-cashregister:
+    image: postgres
+    environment:
+      - POSTGRES_USER=postgres2
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_DB=cashregister
+    ports:
+      - "5441:5432"
+      
+  db-dog:
+    image: postgres
+    environment:
+      - POSTGRES_USER=postgres3
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_DB=dog
+    ports:
+      - "5442:5432"
+      
+  db-accessory:
+    image: postgres
+    environment:
+      - POSTGRES_USER=postgres4
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_DB=accessory
+    ports:
+      - "5443:5432"
+      
+
+  accessories-service:
+    build: AccessoriesService/
+    ports:
+      - "8081:8081"
+    depends_on: 
+      - db-accessory
+
+  cashier-service:
+    build: CashierService/
+    ports:
+      - "8082:8082"
+    depends_on: 
+      - db-cashier
+
+  cashregister-service:
+    build: CashRegisterService/
+    ports:
+      - "8083:8083"
+    depends_on: 
+      - db-cashregister
+      
+  dog-service:
+    build: DogService/
+    ports:
+      - "8084:8084"
+    depends_on: 
+      - db-dog
+
+  mediator:
+    build: Mediator/
+    ports:
+      - "8080:8080"
+    depends_on:
+      - accessories-service
+      - cashier-service
+      - cashregister-service
+      - dog-service
