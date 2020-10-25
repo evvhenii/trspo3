@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.21.0 (992df58d8)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: dog-service
+  name: dog-service
+spec:
+  ports:
+  - name: "dog-service"
+    port: 8084
+    targetPort: 8084
+  selector:
+    io.kompose.service: dog-service
+status:
+  loadBalancer: {}

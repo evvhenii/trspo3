@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.21.0 (992df58d8)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: db-cashregister
+  name: db-cashregister
+spec:
+  ports:
+  - name: "db-cashregister"
+    port: 5432
+    targetPort: 5432
+  selector:
+    io.kompose.service: db-cashregister
+status:
+  loadBalancer: {}
