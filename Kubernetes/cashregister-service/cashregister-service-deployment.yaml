@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cashregister-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cashregister-service
+  template:
+    metadata:
+      labels:
+        app: cashregister-service
+    spec:
+      containers:
+      - image: trspo3_cashregister-service
+        name: cashregister-service
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8083
+

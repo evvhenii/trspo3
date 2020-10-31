@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dog-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dog-service
+  template:
+    metadata:
+      labels:
+        app: dog-service
+    spec:
+      containers:
+      - image: trspo3_dog-service
+        imagePullPolicy: IfNotPresent
+        name: dog-service
+        ports:
+        - containerPort: 8084
+

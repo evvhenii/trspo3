@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db-dog
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db-dog
+  template:
+    metadata:
+      labels:
+        app: db-dog
+    spec:
+      containers:
+      - env:
+        - name: POSTGRES_DB
+          value: dog
+        - name: POSTGRES_PASSWORD
+          value: "123"
+        - name: POSTGRES_USER
+          value: postgres3
+        image: postgres
+        imagePullPolicy: IfNotPresent
+        name: db-dog
+        ports:
+        - containerPort: 5432
+

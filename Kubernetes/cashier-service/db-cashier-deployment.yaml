@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db-cashier
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db-cashier
+  template:
+    metadata:
+      labels:
+        app: db-cashier
+    spec:
+      containers:
+      - env:
+        - name: POSTGRES_DB
+          value: cashier
+        - name: POSTGRES_PASSWORD
+          value: "123"
+        - name: POSTGRES_USER
+          value: postgres
+        image: postgres
+        imagePullPolicy: IfNotPresent
+        name: db-cashier
+        ports:
+        - containerPort: 5432

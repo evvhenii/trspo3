@@ -9,7 +9,7 @@ services:
       - POSTGRES_PASSWORD=123
       - POSTGRES_DB=cashier
     ports:
-      - "5440:5432"
+      - 5440
       
   db-cashregister:
     image: postgres
@@ -18,7 +18,7 @@ services:
       - POSTGRES_PASSWORD=123
       - POSTGRES_DB=cashregister
     ports:
-      - "5441:5432"
+      - 5441
       
   db-dog:
     image: postgres
@@ -27,7 +27,7 @@ services:
       - POSTGRES_PASSWORD=123
       - POSTGRES_DB=dog
     ports:
-      - "5442:5432"
+      - 5442
       
   db-accessory:
     image: postgres
@@ -36,7 +36,7 @@ services:
       - POSTGRES_PASSWORD=123
       - POSTGRES_DB=accessory
     ports:
-      - "5443:5432"
+      - 5443
       
 
   accessories-service:

@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db-cashregister
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db-cashregister
+  template:
+    metadata:
+      labels:
+        app: db-cashregister
+    spec:
+      containers:
+      - env:
+        - name: POSTGRES_DB
+          value: cashregister
+        - name: POSTGRES_PASSWORD
+          value: "123"
+        - name: POSTGRES_USER
+          value: postgres2
+        image: postgres
+        imagePullPolicy: IfNotPresent
+        name: db-cashregister
+        ports:
+        - containerPort: 5432

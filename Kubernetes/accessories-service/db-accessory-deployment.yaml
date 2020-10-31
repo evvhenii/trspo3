@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db-accessory
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db-accessory
+  template:
+    metadata:
+      labels:
+        app: db-accessory
+    spec:
+      containers:
+      - env:
+        - name: POSTGRES_DB
+          value: accessory
+        - name: POSTGRES_PASSWORD
+          value: "123"
+        - name: POSTGRES_USER
+          value: postgres4
+        image: postgres
+        imagePullPolicy: IfNotPresent
+        name: db-accessory
+        ports:
+        - containerPort: 5432
+

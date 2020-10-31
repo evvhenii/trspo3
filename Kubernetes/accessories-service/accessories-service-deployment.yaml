@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: accessories-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: accessories-service
+  template:
+    metadata:
+      labels:
+        app: accessories-service
+    spec:
+      containers:
+      - image: trspo3_accessories-service
+        name: accessories-service
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8081
+

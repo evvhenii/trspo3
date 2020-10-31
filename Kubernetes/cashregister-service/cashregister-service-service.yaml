@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cashregister-service
+spec:
+  type: ClusterIP
+  ports:
+  - name: "cashregister-service"
+    port: 8083
+    targetPort: 8083
+  selector:
+    app: cashregister-service
+

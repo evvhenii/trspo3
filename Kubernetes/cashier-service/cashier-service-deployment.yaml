@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cashier-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cashier-service
+  template:
+    metadata:
+      labels:
+        app: cashier-service
+    spec:
+      containers:
+      - image: trspo3_cashier-service
+        name: cashier-service
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8082
+

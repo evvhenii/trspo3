@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: db-cashier
+spec:
+  type: ClusterIP
+  ports:
+  - name: "db-cashier"
+    port: 5432
+    targetPort: 5432
+  selector:
+    app: db-cashier
+
